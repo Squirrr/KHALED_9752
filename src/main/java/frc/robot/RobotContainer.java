@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import frc.robot.Commands.IntakeCommand;
 import frc.robot.Commands.OuttakeCommand;
 import frc.robot.Commands.ShootCommand;
-import frc.robot.Commands.TransferCommand;
+import frc.robot.Commands.SmartIntakeCommand;
 import frc.robot.Subsystems.IntakeSubsystem;
 import frc.robot.Subsystems.ShooterSubsystem;
 import frc.robot.Subsystems.TransferSubsystem;
@@ -27,14 +27,18 @@ public class RobotContainer {
     
     intake.setDefaultCommand(intake.DefaultCommand());
     transfer.setDefaultCommand(transfer.DefaultCommand());
+    shooter.setDefaultCommand(shooter.DefaultCommand());
     configureBindings();
   }
 
   private void configureBindings() {
 
-    base.R1().whileTrue(new IntakeCommand(intake).alongWith(new TransferCommand(transfer/*, intake*/)));
-    base.L1().whileTrue(new OuttakeCommand(intake));
-    base.R2().whileTrue(new ShootCommand(shooter, transfer));
+    base.R1().whileTrue(new SmartIntakeCommand(transfer, intake));
+    // base.R1().whileTrue(intake.Intake().alongWith(transfer.Transfer()));
+    base.L1().whileTrue(intake.Outtake());
+
+    base.R2().whileTrue(transfer.setTransfer(-0.2).withTimeout(0.5)
+    .andThen(new ShootCommand(shooter, transfer)));
   }
 
   public Command getAutonomousCommand() {

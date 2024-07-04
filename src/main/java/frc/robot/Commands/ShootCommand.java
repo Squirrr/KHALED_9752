@@ -27,8 +27,11 @@ public class ShootCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    transfer.setTransfer(0.1);
-    shooter.shoot(1);
+    shooter.set(6000, 5000);
+    if(shooter.speedReached) {
+      transfer.open();
+      transfer.setTransfer(1);
+    }
   }
 
   // Called once the command ends or is interrupted.

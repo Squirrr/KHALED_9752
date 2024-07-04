@@ -6,14 +6,15 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystems.IntakeSubsystem;
-import frc.robot.Subsystems.TransferSubsystem; 
+import frc.robot.Subsystems.TransferSubsystem;
 
-public class TransferCommand extends Command {
+public class SmartIntakeCommand extends Command {
   /** Creates a new TransferCommand. */
   private TransferSubsystem transfer;
-  // private IntakeSubsystem intake;
-  public TransferCommand(TransferSubsystem transfer/*, IntakeSubsystem intake*/) {
-    this.transfer = transfer;
+  private IntakeSubsystem intake;
+  public SmartIntakeCommand(TransferSubsystem t, IntakeSubsystem i) {
+    transfer = t;
+    intake = i;
     // this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(transfer);
@@ -27,7 +28,8 @@ public class TransferCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // intake.setIntake(1);
+    transfer.close();
+    intake.Intake();
     transfer.setTransfer(1);
   }
 

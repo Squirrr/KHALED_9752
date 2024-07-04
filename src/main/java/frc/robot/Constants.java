@@ -19,15 +19,16 @@ public final class Constants {
                 }
         }
 
-        public static final int kIntakeMotorID = 15;
-        public static final int kTransferMotorID = 0;
+        public static final int kIntakeMotorPort = 15;
+        public static final int kTransferMotorPort = 20;
 
         public static class ShooterConstants{
-                public static final int kLeftShooterMotorID = 0;
-                public static final int kRightShooterMotorID = 0;
-                public static final int kPivotMotorID = 0;
+                public static final int kLeftShooterMotorPort = 20;
+                public static final int kRightShooterMotorPort = 21;
+                public static final int kPivotMotorPort = 0;
+                public static final int kGateServoPort = 9;
 
-                // public static final int[] kPivotEncoderID = {0,0};
+                // public static final int[] kPivotEncoderPort = {0,0};
                 // public static final boolean kEncoderReversed = false;
         }
         
